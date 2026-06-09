@@ -129,3 +129,4 @@ btn_copiar.pack(pady=10)
 # Inicia o loop da interface gráfica
 janela.mainloop()
 
+# Script atualizado para o sistema
