@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas Seguras</title>
+    <style>
+        /* PALETA DE CORES (Igual ao seu Tkinter) */
+        :root {
+            --azul-bebe: #d4f0ff;
+            --rosa-principal: #ff8da1;
+            --rosa-escuro: #d65a7f;
+            --caixa-texto: #ffffff;
+            --texto-escuro: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--azul-bebe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .janela {
+            width: 420px;
+            background-color: var(--azul-bebe);
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: var(--rosa-escuro);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--texto-escuro);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            font-size: 16px;
+            width: 60px;
+            text-align: center;
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--caixa-texto);
+            color: var(--texto-escuro);
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .checkbox-container {
+            margin-bottom: 15px;
+            color: var(--texto-escuro);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        button {
+            width: 180px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-gerar {
+            background-color: var(--rosa-principal);
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .btn-gerar:hover {
+            background-color: #ff738c;
+        }
+
+        .btn-copiar {
+            background-color: var(--caixa-texto);
+            color: var(--rosa-escuro);
+            margin-top: 10px;
+        }
+
+        .btn-copiar:hover {
+            background-color: #f0f0f0;
+        }
+
+        input[type="text"] {
+            font-family: 'Consolas', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            width: 90%;
+            padding: 8px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--caixa-texto);
+            color: var(--rosa-escuro);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="janela">
+        <h1>Gerador de Senhas</h1>
+        
+        <label for="comprimento">Comprimento da Senha (Mínimo 8):</label>
+        <input type="number" id="comprimento" value="16" min="8">
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="simbolos" checked>
+            <label for="simbolos" style="display:inline;">Incluir Símbolos (!@#$)</label>
+        </div>
+
+        <button class="btn-gerar" onclick="acaoGerarSenha()">GERAR SENHA</button>
+        
+        <input type="text" id="resultado" readonly>
+        
+        <button class="btn-copiar" onclick="acaoCopiar()">Copiar Senha</button>
+    </div>
+
+    <script>
+        // LÓGICA DO GERADOR DE SENHAS (Igual ao seu secrets do Python)
+        function gerarSenhaForte(comprimento = 16, incluirSimbolos = true) {
+            const letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
+            const letrasMaiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const digitos = "0123456789";
+            const simbolos = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+            let caracteresPermitidos = letrasMinusculas + letrasMaiusculas + digitos;
+            if (incluirSimbolos) {
+                caracteresPermitidos += simbolos;
+            }
+
+            // Garante pelo menos um de cada tipo obrigatório (Segurança)
+            let senha = [
+                letrasMinusculas[crypto.getRandomValues(new Uint32Array(1))[0] % letrasMinusculas.length],
+                letrasMaiusculas[crypto.getRandomValues(new Uint32Array(1))[0] % letrasMaiusculas.length],
+                digitos[crypto.getRandomValues(new Uint32Array(1))[0] % digitos.length]
+            ];
+
+            if (incluirSimbolos) {
+                senha.push(simbolos[crypto.getRandomValues(new Uint32Array(1))[0] % simbolos.length]);
+            }
+
+            // Preenche o restante do comprimento
+            const comprimentoRestante = comprimento - senha.length;
+            for (let i = 0; i < comprimentoRestante; i++) {
+                const indiceAleatorio = crypto.getRandomValues(new Uint32Array(1))[0] % caracteresPermitidos.length;
+                senha.push(caracteresPermitidos[indiceAleatorio]);
+            }
+
+            // Embaralha a lista de forma segura (Fisher-Yates)
+            for (let i = senha.length - 1; i > 0; i--) {
+                const j = crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1);
+                [senha[i], senha[j]] = [senha[j], senha[i]];
+            }
+
+            return senha.join("");
+        }
+
+        function acaoGerarSenha() {
+            const campoComprimento = document.getElementById("comprimento");
+            const comprimento = parseInt(campoComprimento.value);
+
+            if (isNaN(comprimento) || comprimento < 8) {
+                alert("Para sua segurança, use no mínimo 8 caracteres.");
+                return;
+            }
+
+            const incluirSimbolos = document.getElementById("simbolos").checked;
+            const novaSenha = gerarSenhaForte(comprimento, incluirSimbolos);
+
+            const campoResultado = document.getElementById("resultado");
+            campoResultado.value = novaSenha;
+        }
+
+        function acaoCopiar() {
+            const campoResultado = document.getElementById("resultado");
+            if (campoResultado.value) {
+                navigator.clipboard.writeText(campoResultado.value);
+                alert("Senha copiada para a área de transferência!");
+            } else {
+                alert("Gere uma senha primeiro para poder copiar.");
+            }
+        }
+    </script>
+</body>
+</html>
