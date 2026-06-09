@@ -22,7 +22,8 @@ Cibercriminosos utilizam diversos métodos para obter acesso não autorizado a a
 - Design/Paleta de Cores
 
 ---
-<img width="403" height="356" alt="Interface png" src="https://github.com/user-attachments/assets/c57c11b5-3ef5-4f8e-8f28-4edbc096290d" />
+# Resultado:
+[Clique aqui para visualizar o Gerador de Senhas ✨](https://larissavanzella.github.io/gerador-senhas-python/)
 
   
 
