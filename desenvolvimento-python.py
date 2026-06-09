@@ -130,3 +130,5 @@ btn_copiar.pack(pady=10)
 janela.mainloop()
 
 # Script atualizado para o sistema
+
+
