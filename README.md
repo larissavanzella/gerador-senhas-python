@@ -15,7 +15,7 @@ Cibercriminosos utilizam diversos métodos para obter acesso não autorizado a a
 - O objetivo desta interface é exclusivamente auxiliar o usuário na criação de uma senha considerada forte.
 
 ---
-- # 🔑 Gerador de Senhas Criptográficas
+- # 🔑 Gerador de Senhas:
 
 Este é um projeto desenvolvido com o objetivo principal de aplicar conceitos de segurança e criptografia utilizando **Python**. 
 
