@@ -1,2 +1,2 @@
-*.html linguist-language=Coq
-*.css linguist-language=Coq
+*.html linguist-vendored
+*.css linguist-vendored
