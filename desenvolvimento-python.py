@@ -129,4 +129,3 @@ btn_copiar.pack(pady=10)
 # Inicia o loop da interface gráfica
 janela.mainloop()
 
-# Atualizando o grafico
