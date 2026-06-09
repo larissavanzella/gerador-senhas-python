@@ -24,7 +24,7 @@ A lógica principal do aplicativo foi construída do zero em Python (utilizando 
 ## 🛠️ Arquitetura do Projeto
 
 * **Back-end:** Todo o desenvolvimento lógico, regras de segurança, manipulação de strings e geração de caracteres foram feitos em **Python**.
-* **Front-end:** Utilizei **HTML/CSS** apenas como uma camada visual para tornar a interação do usuário mais intuitiva do que uma tela de terminal.
+* **Front-end:** Utilizei **HTML/CSS** apenas como uma camada visual, sendo melhor a visualização e o resultado do projeto. 
 
 ---
 # Resultado:
