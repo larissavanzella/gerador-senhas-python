@@ -1,1 +1,2 @@
-* linguist-language=Python
+*.html linguist-language=Coq
+*.css linguist-language=Coq
