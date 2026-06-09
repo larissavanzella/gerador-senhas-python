@@ -15,11 +15,16 @@ Cibercriminosos utilizam diversos métodos para obter acesso não autorizado a a
 - O objetivo desta interface é exclusivamente auxiliar o usuário na criação de uma senha considerada forte.
 
 ---
-# Ferramentas: ⚙️
-- Bibliotecas Nativas do Python
-- Componentes Visuais
-- Lógica de Programação
-- Design/Paleta de Cores
+- # 🔑 Gerador de Senhas Criptográficas
+
+Este é um projeto desenvolvido com o objetivo principal de aplicar conceitos de segurança e criptografia utilizando **Python**. 
+
+A lógica principal do aplicativo foi construída do zero em Python (utilizando a biblioteca padrão `secrets`), garantindo que as senhas geradas sejam criptograficamente seguras e imprevisíveis.
+
+## 🛠️ Arquitetura do Projeto
+
+* **Back-end:** Todo o desenvolvimento lógico, regras de segurança, manipulação de strings e geração de caracteres foram feitos em **Python**.
+* **Front-end:** Utilizei **HTML/CSS** apenas como uma camada visual para tornar a interação do usuário mais intuitiva do que uma tela de terminal.
 
 ---
 # Resultado:
