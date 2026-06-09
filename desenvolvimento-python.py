@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 
+
 # --- LÓGICA DO GERADOR DE SENHAS ---
 def gerar_senha_forte(comprimento=16, incluir_simbolos=True):
     letras = string.ascii_letters
